@@ -18,14 +18,16 @@ async function sendMessage() {
     userInput.value = '';
 
     try {
-        const response = await fetch('https://apaskvidyabackend.onrender.com', {
+        const response = await fetch('https://apaskvidyabackend.onrender.com/chat', { // ✅ updated here
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ message })
         });
+
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
+
         const data = await response.json();
         addMessage(data.response, false);
     } catch (error) {
