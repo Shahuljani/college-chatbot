@@ -18,7 +18,7 @@ async function sendMessage() {
     userInput.value = '';
 
     try {
-        const response = await fetch('http://localhost:8000/chat', {
+        const response = await fetch('https://apaskvidyabackend.onrender.com', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ message })
