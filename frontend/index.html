@@ -34,6 +34,18 @@
         .shadow-gold {
             box-shadow: 0 4px 6px rgba(234, 179, 8, 0.2);
         }
+        .collapsible {
+            cursor: pointer;
+            padding: 10px;
+            background-color: #1e3a8a;
+            color: white;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+        .content {
+            display: none;
+            padding: 10px;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -105,65 +117,566 @@
 
         <!-- Sample Questions Section -->
         <section id="questions" class="py-12 bg-gray-100 rounded-lg">
-            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-8">Sample Questions for CITM</h2>
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-8">Sample Questions for Colleges</h2>
+            <p class="text-center text-gray-600 mb-6">Click on a college to view sample questions you can ask the chatbot.</p>
             <div class="max-w-3xl mx-auto">
-                <h3 class="text-xl font-semibold text-gray-800 mb-4">Courses</h3>
-                <ul class="list-disc list-inside text-gray-600 mb-6">
-                    <li>What are the courses at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
-                    <li>What are the courses at CITM?</li>
-                    <li>Which courses are offered by COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
-                    <li>Which courses are offered by CITM?</li>
-                    <li>List the courses available at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT.</li>
-                    <li>List the courses available at CITM.</li>
-                    <li>What are the programs at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
-                    <li>Which programs are offered by COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
-                    <li>List the programs available at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT.</li>
-                </ul>
-                <h3 class="text-xl font-semibold text-gray-800 mb-4">Convener Quota Fees</h3>
-                <ul class="list-disc list-inside text-gray-600 mb-6">
-                    <li>What is the convener quota fee at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
-                    <li>What is the convener quota fee at CITM?</li>
-                    <li>How much is the annual fee for convener quota at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
-                    <li>How much is the annual fee for convener quota at CITM?</li>
-                    <li>Tell me the convener quota fees for COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT.</li>
-                    <li>Tell me the convener quota fees for CITM.</li>
-                </ul>
-                <h3 class="text-xl font-semibold text-gray-800 mb-4">Management Quota Fees</h3>
-                <ul class="list-disc list-inside text-gray-600 mb-6">
-                    <li>What is the management quota fee at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
-                    <li>What is the management quota fee at CITM?</li>
-                    <li>How much is the management quota fee at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
-                    <li>How much is the management quota fee at CITM?</li>
-                    <li>Tell me the management quota fees for COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT.</li>
-                    <li>Tell me the management quota fees for CITM.</li>
-                </ul>
-                <h3 class="text-xl font-semibold text-gray-800 mb-4">Placements</h3>
-                <ul class="list-disc list-inside text-gray-600 mb-6">
-                    <li>What is the placement percentage at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
-                    <li>What is the placement percentage at CITM?</li>
-                    <li>How good are placements at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
-                    <li>How good are placements at CITM?</li>
-                    <li>Tell me about COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT placements.</li>
-                    <li>Tell me about CITM placements.</li>
-                </ul>
-                <h3 class="text-xl font-semibold text-gray-800 mb-4">Contact Information</h3>
-                <ul class="list-disc list-inside text-gray-600 mb-6">
-                    <li>What is the contact number for COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
-                    <li>What is the contact number for CITM?</li>
-                    <li>How can I contact COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
-                    <li>How can I contact CITM?</li>
-                    <li>Give me the phone number of COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT.</li>
-                    <li>Give me the phone number of CITM.</li>
-                </ul>
-                <h3 class="text-xl font-semibold text-gray-800 mb-4">General Information</h3>
-                <ul class="list-disc list-inside text-gray-600">
-                    <li>Tell me about COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT.</li>
-                    <li>Tell me about CITM.</li>
-                    <li>What are the details of COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
-                    <li>What are the details of CITM?</li>
-                    <li>Give me information about COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT.</li>
-                    <li>Give me information about CITM.</li>
-                </ul>
+                <!-- Coastal Institute of Technology & Management -->
+                <div class="collapsible" onclick="toggleCollapsible(this)">Coastal Institute of Technology & Management (CITM)</div>
+                <div class="content">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Courses</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What are the courses at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
+                        <li>What are the courses at CITM?</li>
+                        <li>Which courses are offered by COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
+                        <li>Which courses are offered by CITM?</li>
+                        <li>List the courses available at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT.</li>
+                        <li>List the courses available at CITM.</li>
+                        <li>What are the programs at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
+                        <li>Which programs are offered by COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
+                        <li>List the programs available at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Convener Quota Fees</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What is the convener quota fee at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
+                        <li>What is the convener quota fee at CITM?</li>
+                        <li>How much is the annual fee for convener quota at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
+                        <li>How much is the annual fee for convener quota at CITM?</li>
+                        <li>Tell me the convener quota fees for COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT.</li>
+                        <li>Tell me the convener quota fees for CITM.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Management Quota Fees</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What is the management quota fee at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
+                        <li>What is the management quota fee at CITM?</li>
+                        <li>How much is the management quota fee at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
+                        <li>How much is the management quota fee at CITM?</li>
+                        <li>Tell me the management quota fees for COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT.</li>
+                        <li>Tell me the management quota fees for CITM.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Placements</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What is the placement percentage at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
+                        <li>What is the placement percentage at CITM?</li>
+                        <li>How good are placements at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
+                        <li>How good are placements at CITM?</li>
+                        <li>Tell me about COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT placements.</li>
+                        <li>Tell me about CITM placements.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Contact Information</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What is the contact number for COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
+                        <li>What is the contact number for CITM?</li>
+                        <li>How can I contact COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
+                        <li>How can I contact CITM?</li>
+                        <li>Give me the phone number of COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT.</li>
+                        <li>Give me the phone number of CITM.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">General Information</h3>
+                    <ul class="list-disc list-inside text-gray-600">
+                        <li>Tell me about COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT.</li>
+                        <li>Tell me about CITM.</li>
+                        <li>What are the details of COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
+                        <li>What are the details of CITM?</li>
+                        <li>Give me information about COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT.</li>
+                        <li>Give me information about CITM.</li>
+                    </ul>
+                </div>
+
+                <!-- Akshaya Bharathi Institute of Technology -->
+                <div class="collapsible" onclick="toggleCollapsible(this)">Akshaya Bharathi Institute of Technology (ABIT)</div>
+                <div class="content">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Courses</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What are the courses at Akshaya Bharathi Institute of Technology?</li>
+                        <li>What are the courses at ABIT?</li>
+                        <li>Which courses are offered by Akshaya Bharathi Institute of Technology?</li>
+                        <li>Which courses are offered by ABIT?</li>
+                        <li>List the courses available at Akshaya Bharathi Institute of Technology.</li>
+                        <li>List the courses available at ABIT.</li>
+                        <li>What are the programs at Akshaya Bharathi Institute of Technology?</li>
+                        <li>Which programs are offered by Akshaya Bharathi Institute of Technology?</li>
+                        <li>List the programs available at Akshaya Bharathi Institute of Technology.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Convener Quota Fees</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What is the convener quota fee at Akshaya Bharathi Institute of Technology?</li>
+                        <li>What is the convener quota fee at ABIT?</li>
+                        <li>How much is the annual fee for convener quota at Akshaya Bharathi Institute of Technology?</li>
+                        <li>How much is the annual fee for convener quota at ABIT?</li>
+                        <li>Tell me the convener quota fees for Akshaya Bharathi Institute of Technology.</li>
+                        <li>Tell me the convener quota fees for ABIT.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Management Quota Fees</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What is the management quota fee at Akshaya Bharathi Institute of Technology?</li>
+                        <li>What is the management quota fee at ABIT?</li>
+                        <li>How much is the management quota fee at Akshaya Bharathi Institute of Technology?</li>
+                        <li>How much is the management quota fee at ABIT?</li>
+                        <li>Tell me the management quota fees for Akshaya Bharathi Institute of Technology.</li>
+                        <li>Tell me the management quota fees for ABIT.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Placements</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What is the placement percentage at Akshaya Bharathi Institute of Technology?</li>
+                        <li>What is the placement percentage at ABIT?</li>
+                        <li>How good are placements at Akshaya Bharathi Institute of Technology?</li>
+                        <li>How good are placements at ABIT?</li>
+                        <li>Tell me about Akshaya Bharathi Institute of Technology placements.</li>
+                        <li>Tell me about ABIT placements.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Contact Information</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What is the contact number for Akshaya Bharathi Institute of Technology?</li>
+                        <li>What is the contact number for ABIT?</li>
+                        <li>How can I contact Akshaya Bharathi Institute of Technology?</li>
+                        <li>How can I contact ABIT?</li>
+                        <li>Give me the phone number of Akshaya Bharathi Institute of Technology.</li>
+                        <li>Give me the phone number of ABIT.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">General Information</h3>
+                    <ul class="list-disc list-inside text-gray-600">
+                        <li>Tell me about Akshaya Bharathi Institute of Technology.</li>
+                        <li>Tell me about ABIT.</li>
+                        <li>What are the details of Akshaya Bharathi Institute of Technology?</li>
+                        <li>What are the details of ABIT?</li>
+                        <li>Give me information about Akshaya Bharathi Institute of Technology.</li>
+                        <li>Give me information about ABIT.</li>
+                    </ul>
+                </div>
+
+                <!-- ABR College Of Engineering & Technology -->
+                <div class="collapsible" onclick="toggleCollapsible(this)">ABR College Of Engineering & Technology (ABRK)</div>
+                <div class="content">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Courses</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What are the courses at ABR College Of Engineering & Technology?</li>
+                        <li>What are the courses at ABRK?</li>
+                        <li>Which courses are offered by ABR College Of Engineering & Technology?</li>
+                        <li>Which courses are offered by ABRK?</li>
+                        <li>List the courses available at ABR College Of Engineering & Technology.</li>
+                        <li>List the courses available at ABRK.</li>
+                        <li>What are the programs at ABR College Of Engineering & Technology?</li>
+                        <li>Which programs are offered by ABR College Of Engineering & Technology?</li>
+                        <li>List the programs available at ABR College Of Engineering & Technology.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Convener Quota Fees</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What is the convener quota fee at ABR College Of Engineering & Technology?</li>
+                        <li>What is the convener quota fee at ABRK?</li>
+                        <li>How much is the annual fee for convener quota at ABR College Of Engineering & Technology?</li>
+                        <li>How much is the annual fee for convener quota at ABRK?</li>
+                        <li>Tell me the convener quota fees for ABR College Of Engineering & Technology.</li>
+                        <li>Tell me the convener quota fees for ABRK.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Management Quota Fees</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What is the management quota fee at ABR College Of Engineering & Technology?</li>
+                        <li>What is the management quota fee at ABRK?</li>
+                        <li>How much is the management quota fee at ABR College Of Engineering & Technology?</li>
+                        <li>How much is the management quota fee at ABRK?</li>
+                        <li>Tell me the management quota fees for ABR College Of Engineering & Technology.</li>
+                        <li>Tell me the management quota fees for ABRK.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Placements</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What is the placement percentage at ABR College Of Engineering & Technology?</li>
+                        <li>What is the placement percentage at ABRK?</li>
+                        <li>How good are placements at ABR College Of Engineering & Technology?</li>
+                        <li>How good are placements at ABRK?</li>
+                        <li>Tell me about ABR College Of Engineering & Technology placements.</li>
+                        <li>Tell me about ABRK placements.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Contact Information</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What is the contact number for ABR College Of Engineering & Technology?</li>
+                        <li>What is the contact number for ABRK?</li>
+                        <li>How can I contact ABR College Of Engineering & Technology?</li>
+                        <li>How can I contact ABRK?</li>
+                        <li>Give me the phone number of ABR College Of Engineering & Technology.</li>
+                        <li>Give me the phone number of ABRK.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">General Information</h3>
+                    <ul class="list-disc list-inside text-gray-600">
+                        <li>Tell me about ABR College Of Engineering & Technology.</li>
+                        <li>Tell me about ABRK.</li>
+                        <li>What are the details of ABR College Of Engineering & Technology?</li>
+                        <li>What are the details of ABRK?</li>
+                        <li>Give me information about ABR College Of Engineering & Technology.</li>
+                        <li>Give me information about ABRK.</li>
+                    </ul>
+                </div>
+
+                <!-- Adarsh College of Engineering -->
+                <div class="collapsible" onclick="toggleCollapsible(this)">Adarsh College of Engineering (ACEE)</div>
+                <div class="content">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Courses</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What are the courses at Adarsh College of Engineering?</li>
+                        <li>What are the courses at ACEE?</li>
+                        <li>Which courses are offered by Adarsh College of Engineering?</li>
+                        <li>Which courses are offered by ACEE?</li>
+                        <li>List the courses available at Adarsh College of Engineering.</li>
+                        <li>List the courses available at ACEE.</li>
+                        <li>What are the programs at Adarsh College of Engineering?</li>
+                        <li>Which programs are offered by Adarsh College of Engineering?</li>
+                        <li>List the programs available at Adarsh College of Engineering.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Convener Quota Fees</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What is the convener quota fee at Adarsh College of Engineering?</li>
+                        <li>What is the convener quota fee at ACEE?</li>
+                        <li>How much is the annual fee for convener quota at Adarsh College of Engineering?</li>
+                        <li>How much is the annual fee for convener quota at ACEE?</li>
+                        <li>Tell me the convener quota fees for Adarsh College of Engineering.</li>
+                        <li>Tell me the convener quota fees for ACEE.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Management Quota Fees</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What is the management quota fee at Adarsh College of Engineering?</li>
+                        <li>What is the management quota fee at ACEE?</li>
+                        <li>How much is the management quota fee at Adarsh College of Engineering?</li>
+                        <li>How much is the management quota fee at ACEE?</li>
+                        <li>Tell me the management quota fees for Adarsh College of Engineering.</li>
+                        <li>Tell me the management quota fees for ACEE.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Placements</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What is the placement percentage at Adarsh College of Engineering?</li>
+                        <li>What is the placement percentage at ACEE?</li>
+                        <li>How good are placements at Adarsh College of Engineering?</li>
+                        <li>How good are placements at ACEE?</li>
+                        <li>Tell me about Adarsh College of Engineering placements.</li>
+                        <li>Tell me about ACEE placements.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Contact Information</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What is the contact number for Adarsh College of Engineering?</li>
+                        <li>What is the contact number for ACEE?</li>
+                        <li>How can I contact Adarsh College of Engineering?</li>
+                        <li>How can I contact ACEE?</li>
+                        <li>Give me the phone number of Adarsh College of Engineering.</li>
+                        <li>Give me the phone number of ACEE.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">General Information</h3>
+                    <ul class="list-disc list-inside text-gray-600">
+                        <li>Tell me about Adarsh College of Engineering.</li>
+                        <li>Tell me about ACEE.</li>
+                        <li>What are the details of Adarsh College of Engineering?</li>
+                        <li>What are the details of ACEE?</li>
+                        <li>Give me information about Adarsh College of Engineering.</li>
+                        <li>Give me information about ACEE.</li>
+                    </ul>
+                </div>
+
+                <!-- Aditya College of Engineering and Technology -->
+                <div class="collapsible" onclick="toggleCollapsible(this)">Aditya College of Engineering and Technology (ACET)</div>
+                <div class="content">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Courses</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What are the courses at Aditya College of Engineering and Technology?</li>
+                        <li>What are the courses at ACET?</li>
+                        <li>Which courses are offered by Aditya College of Engineering and Technology?</li>
+                        <li>Which courses are offered by ACET?</li>
+                        <li>List the courses available at Aditya College of Engineering and Technology.</li>
+                        <li>List the courses available at ACET.</li>
+                        <li>What are the programs at Aditya College of Engineering and Technology?</li>
+                        <li>Which programs are offered by Aditya College of Engineering and Technology?</li>
+                        <li>List the programs available at Aditya College of Engineering and Technology.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Convener Quota Fees</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What is the convener quota fee at Aditya College of Engineering and Technology?</li>
+                        <li>What is the convener quota fee at ACET?</li>
+                        <li>How much is the annual fee for convener quota at Aditya College of Engineering and Technology?</li>
+                        <li>How much is the annual fee for convener quota at ACET?</li>
+                        <li>Tell me the convener quota fees for Aditya College of Engineering and Technology.</li>
+                        <li>Tell me the convener quota fees for ACET.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Management Quota Fees</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What is the management quota fee at Aditya College of Engineering and Technology?</li>
+                        <li>What is the management quota fee at ACET?</li>
+                        <li>How much is the management quota fee at Aditya College of Engineering and Technology?</li>
+                        <li>How much is the management quota fee at ACET?</li>
+                        <li>Tell me the management quota fees for Aditya College of Engineering and Technology.</li>
+                        <li>Tell me the management quota fees for ACET.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Placements</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What is the placement percentage at Aditya College of Engineering and Technology?</li>
+                        <li>What is the placement percentage at ACET?</li>
+                        <li>How good are placements at Aditya College of Engineering and Technology?</li>
+                        <li>How good are placements at ACET?</li>
+                        <li>Tell me about Aditya College of Engineering and Technology placements.</li>
+                        <li>Tell me about ACET placements.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Contact Information</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What is the contact number for Aditya College of Engineering and Technology?</li>
+                        <li>What is the contact number for ACET?</li>
+                        <li>How can I contact Aditya College of Engineering and Technology?</li>
+                        <li>How can I contact ACET?</li>
+                        <li>Give me the phone number of Aditya College of Engineering and Technology.</li>
+                        <li>Give me the phone number of ACET.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">General Information</h3>
+                    <ul class="list-disc list-inside text-gray-600">
+                        <li>Tell me about Aditya College of Engineering and Technology.</li>
+                        <li>Tell me about ACET.</li>
+                        <li>What are the details of Aditya College of Engineering and Technology?</li>
+                        <li>What are the details of ACET?</li>
+                        <li>Give me information about Aditya College of Engineering and Technology.</li>
+                        <li>Give me information about ACET.</li>
+                    </ul>
+                </div>
+
+                <!-- Yogananda Institute of Technology & Science -->
+                <div class="collapsible" onclick="toggleCollapsible(this)">Yogananda Institute of Technology & Science (YITS)</div>
+                <div class="content">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Courses</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What are the courses at Yogananda Institute of Technology & Science?</li>
+                        <li>What are the courses at YITS?</li>
+                        <li>Which courses are offered by Yogananda Institute of Technology & Science?</li>
+                        <li>Which courses are offered by YITS?</li>
+                        <li>List the courses available at Yogananda Institute of Technology & Science.</li>
+                        <li>List the courses available at YITS.</li>
+                        <li>What are the programs at Yogananda Institute of Technology & Science?</li>
+                        <li>Which programs are offered by Yogananda Institute of Technology & Science?</li>
+                        <li>List the programs available at Yogananda Institute of Technology & Science.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Convener Quota Fees</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What is the convener quota fee at Yogananda Institute of Technology & Science?</li>
+                        <li>What is the convener quota fee at YITS?</li>
+                        <li>How much is the annual fee for convener quota at Yogananda Institute of Technology & Science?</li>
+                        <li>How much is the annual fee for convener quota at YITS?</li>
+                        <li>Tell me the convener quota fees for Yogananda Institute of Technology & Science.</li>
+                        <li>Tell me the convener quota fees for YITS.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Management Quota Fees</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What is the management quota fee at Yogananda Institute of Technology & Science?</li>
+                        <li>What is the management quota fee at YITS?</li>
+                        <li>How much is the management quota fee at Yogananda Institute of Technology & Science?</li>
+                        <li>How much is the management quota fee at YITS?</li>
+                        <li>Tell me the management quota fees for Yogananda Institute of Technology & Science.</li>
+                        <li>Tell me the management quota fees for YITS.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Placements</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What is the placement percentage at Yogananda Institute of Technology & Science?</li>
+                        <li>What is the placement percentage at YITS?</li>
+                        <li>How good are placements at Yogananda Institute of Technology & Science?</li>
+                        <li>How good are placements at YITS?</li>
+                        <li>Tell me about Yogananda Institute of Technology & Science placements.</li>
+                        <li>Tell me about YITS placements.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Contact Information</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What is the contact number for Yogananda Institute of Technology & Science?</li>
+                        <li>What is the contact number for YITS?</li>
+                        <li>How can I contact Yogananda Institute of Technology & Science?</li>
+                        <li>How can I contact YITS?</li>
+                        <li>Give me the phone number of Yogananda Institute of Technology & Science.</li>
+                        <li>Give me the phone number of YITS.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">General Information</h3>
+                    <ul class="list-disc list-inside text-gray-600">
+                        <li>Tell me about Yogananda Institute of Technology & Science.</li>
+                        <li>Tell me about YITS.</li>
+                        <li>What are the details of Yogananda Institute of Technology & Science?</li>
+                        <li>What are the details of YITS?</li>
+                        <li>Give me information about Yogananda Institute of Technology & Science.</li>
+                        <li>Give me information about YITS.</li>
+                    </ul>
+                </div>
+
+                <!-- KL University (Koneru Lakshmaiah University) -->
+                <div class="collapsible" onclick="toggleCollapsible(this)">KL University (Koneru Lakshmaiah University) (KLEF)</div>
+                <div class="content">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Courses</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What are the courses at KL University (Koneru Lakshmaiah University)?</li>
+                        <li>What are the courses at KLEF?</li>
+                        <li>Which courses are offered by KL University (Koneru Lakshmaiah University)?</li>
+                        <li>Which courses are offered by KLEF?</li>
+                        <li>List the courses available at KL University (Koneru Lakshmaiah University).</li>
+                        <li>List the courses available at KLEF.</li>
+                        <li>What are the programs at KL University (Koneru Lakshmaiah University)?</li>
+                        <li>Which programs are offered by KL University (Koneru Lakshmaiah University)?</li>
+                        <li>List the programs available at KL University (Koneru Lakshmaiah University).</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Convener Quota Fees</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What is the convener quota fee at KL University (Koneru Lakshmaiah University)?</li>
+                        <li>What is the convener quota fee at KLEF?</li>
+                        <li>How much is the annual fee for convener quota at KL University (Koneru Lakshmaiah University)?</li>
+                        <li>How much is the annual fee for convener quota at KLEF?</li>
+                        <li>Tell me the convener quota fees for KL University (Koneru Lakshmaiah University).</li>
+                        <li>Tell me the convener quota fees for KLEF.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Management Quota Fees</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What is the management quota fee at KL University (Koneru Lakshmaiah University)?</li>
+                        <li>What is the management quota fee at KLEF?</li>
+                        <li>How much is the management quota fee at KL University (Koneru Lakshmaiah University)?</li>
+                        <li>How much is the management quota fee at KLEF?</li>
+                        <li>Tell me the management quota fees for KL University (Koneru Lakshmaiah University).</li>
+                        <li>Tell me the management quota fees for KLEF.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Placements</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What is the placement percentage at KL University (Koneru Lakshmaiah University)?</li>
+                        <li>What is the placement percentage at KLEF?</li>
+                        <li>How good are placements at KL University (Koneru Lakshmaiah University)?</li>
+                        <li>How good are placements at KLEF?</li>
+                        <li>Tell me about KL University (Koneru Lakshmaiah University) placements.</li>
+                        <li>Tell me about KLEF placements.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Contact Information</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What is the contact number for KL University (Koneru Lakshmaiah University)?</li>
+                        <li>What is the contact number for KLEF?</li>
+                        <li>How can I contact KL University of Technology?</li>
+                        <li>How can I contact KLEF?</li>
+                        <li>Give me the phone number of KL University.</li>
+                        <li>Give me the phone number of KLEF.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">General Information</h3>
+                    <ul class="list-disc list-inside text-gray-600">
+                        <li>Tell me about KL University.</li>
+                        <li>Tell me about KLEF.</li>
+                        <li>What are the details of KL University?</li>
+                        <li>What are the details of KLEF?</li>
+                        <li>Give me information about KL University.</li>
+                        <li>Give me information about KLEF.</li>
+                    </ul>
+                </div>
+
+                <!-- SRM University -->
+                <div class="collapsible" onclick="toggleCollapsible(this)">SRM University (SRMUPU)</div>
+                <div class="content">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Courses</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What are the courses at SRM University?</li>
+                        <li>What are the courses at SRMUPU?</li>
+                        <li>Which courses are offered by SRM University?</li>
+                        <li>Which courses are offered by SRMUPU?</li>
+                        <li>List the courses available at SRM University.</li>
+                        <li>List the courses available at SRMUPU.</li>
+                        <li>What are the programs at SRM University?</li>
+                        <li>Which programs are offered by SRM University?</li>
+                        <li>List all available courses at SRM?</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Convener Quota Fees</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What is the convener quota fee at SRM University?</li>
+                        <li>What is the convener quota fee at SRMUPU?</li>
+                        <li>How much is the annual fee for convener quota at SRM University?</li>
+                        <li>How much is the annual fee for convener quota at SRMUPU?</li>
+                        <li>Tell me the convener quota fees for SRM University.</li>
+                        <li>Tell me the convener quota fees for SRMUPU.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Management Quota Fees</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What is the management quota fee at SRM University?</li>
+                        <li>What is the management quota fee at SRMUPU?</li>
+                        <li>How much is the management quota fee at SRM University?</li>
+                        <li>How much is the management quota fee at SRMUPU?</li>
+                        <li>Tell me the management quota fees for SRM University.</li>
+                        <li>Tell me the management quota fees for SRMUPU.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Placements</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What is the placement percentage at SRM University?</li>
+                        <li>What is the placement percentage at SRMUPU?</li>
+                        <li>How good are placements at SRM University?</li>
+                        <li>How good are placements at SRMUPU?</li>
+                        <li>Tell me about SRM University placements.</li>
+                        <li>Tell me about SRMUPU placements.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Contact Information</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What is the contact number for SRM University?</li>
+                        <li>What is the contact number for SRMUPU?</li>
+                        <li>How can I contact SRM University?</li>
+                        <li>How can I contact SRMUPU?</li>
+                        <li>Give me the phone number of SRM University.</li>
+                        <li>Give me the phone number of SRMUPU.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">General Information</h3>
+                    <ul class="list-disc list-inside text-gray-600">
+                        <li>Tell me about SRM University.</li>
+                        <li>Tell me about SRMUPU.</li>
+                        <li>What are the details of SRM University?</li>
+                        <li>What are the details of SRMUPU?</li>
+                        <li>Give me information about SRM University.</li>
+                        <li>Give me information about SRMUPU.</li>
+                    </ul>
+                </div>
+
+                <!-- VIT-AP University (Vellore Institute of Technology) -->
+                <div class="collapsible" onclick="toggleCollapsible(this)">VIT-AP University (Vellore Institute of Technology) (VIT)</div>
+                <div class="content">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Courses</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What are the courses at VIT-AP University (Vellore Institute of Technology)?</li>
+                        <li>What are the courses at VIT?</li>
+                        <li>Which courses are offered by VIT-AP University (Vellore Institute of Technology)?</li>
+                        <li>Which courses are offered by VIT?</li>
+                        <li>List the courses available at VIT-AP University (Vellore Institute of Technology).</li>
+                        <li>List the courses available at VIT.</li>
+                        <li>What are the programs at VIT-AP University (Vellore Institute of Technology)?</li>
+                        <li>Which programs are offered by VIT-AP University (Vellore Institute of Technology)?</li>
+                        <li>List the programs available at VIT-AP University (Vellore Institute of Technology).</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Convener Quota Fees</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What is the convener quota fee at VIT-AP University (Vellore Institute of Technology)?</li>
+                        <li>What is the convener quota fee at VIT?</li>
+                        <li>How much is the annual fee for convener quota at VIT-AP University (Vellore Institute of Technology)?</li>
+                        <li>How much is the annual fee for convener quota at VIT?</li>
+                        <li>Tell me the convener quota fees for VIT-AP University (Vellore Institute of Technology).</li>
+                        <li>Tell me the convener quota fees for VIT.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Management Quota Fees</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What is the management quota fee at VIT-AP University (Vellore Institute of Technology)?</li>
+                        <li>What is the management quota fee at VIT?</li>
+                        <li>How much is the management quota fee at VIT-AP University (Vellore Institute of Technology)?</li>
+                        <li>How much is the management quota fee at VIT?</li>
+                        <li>Tell me the management quota fees for VIT-AP University (Vellore Institute of Technology).</li>
+                        <li>Tell me the management quota fees for VIT.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Placements</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What is the placement percentage at VIT-AP University (Vellore Institute of Technology)?</li>
+                        <li>What is the placement percentage at VIT?</li>
+                        <li>How good are placements at VIT-AP University (Vellore Institute of Technology)?</li>
+                        <li>How good are placements at VIT?</li>
+                        <li>Tell me about VIT-AP University (Vellore Institute of Technology) placements.</li>
+                        <li>Tell me about VIT placements.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Contact Information</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                        <li>What is the contact number for VIT-AP University (Vellore Institute of Technology)?</li>
+                        <li>What is the contact number for VIT?</li>
+                        <li>How can I contact VIT-AP University (Vellore Institute of Technology)?</li>
+                        <li>How can I contact VIT?</li>
+                        <li>Give me the phone number of VIT-AP University (Vellore Institute of Technology).</li>
+                        <li>Give me the phone number of VIT.</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">General Information</h3>
+                    <ul class="list-disc list-inside text-gray-600">
+                        <li>Tell me about VIT-AP University (Vellore Institute of Technology).</li>
+                        <li>Tell me about VIT.</li>
+                        <li>What are the details of VIT-AP University (Vellore Institute of Technology)?</li>
+                        <li>What are the details of VIT?</li>
+                        <li>Give me information about VIT-AP University (Vellore Institute of Technology).</li>
+                        <li>Give me information about VIT.</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
@@ -191,5 +704,10 @@
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
+        }
+
+        function toggleCollapsible(element) {
+            const content = element.nextElementSibling;
+            content.style.display = content.style.display === 'block' ? 'none' : 'block';
         }
     </script>
