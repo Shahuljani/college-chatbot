@@ -224,7 +224,8 @@
 <body>
     <!-- Welcome Message -->
     <div id="welcome-message">
-        <h1>Namaste, Welcome to APaskVidya</h1>
+        <h1>Namaste,<br>
+    Welcome to APaskVidya </h1>
     </div>
 
     <!-- Sticky Header -->
@@ -268,11 +269,13 @@
         <section id="chatbot" class="card p-8 mb-12 max-w-4xl mx-auto">
             <h2 class="text-3xl font-semibold text-white mb-6 text-center">Chat with APaskVidya</h2>
             <div id="chat-container" class="h-96 overflow-y-auto mb-6 flex flex-col p-6 bg-gray-900 rounded-lg"></div>
-            <div class="flex gap-3">
-                <input id="user-input" type="text" class="flex-1 p-4 bg-gray-800 border border-gray-700 text-white rounded-lg focus:ring-2 focus:ring-yellow-400 placeholder-gray-400" placeholder="Ask about a college (e.g., Courses at VIT?)">
-                <br>
-                <button id="send-btn" class="bg-yellow-400 text-gray-900 p-4 rounded-lg hover:bg-yellow-300 font-semibold">Send</button>
+            <div class="flex-1 relative">
+                <input id="user-input" type="text" class="flex-1 w-full pr-20 p-4 bg-gray-800 border border-gray-700 text-white rounded-lg focus:ring-2 focus:ring-yellow-400 placeholder-gray-400" placeholder="Ask about a college (e.g., Courses at VIT?)">
+                <button id="send-btn" class="bg-yellow-400 text-gray-900 px-4 py-2 rounded-md hover:bg-yellow-300 text-sm font-medium absolute right-2 top-1/2 -translate-y-1/2">Send</button>
             </div>
+
+
+
         </section>
 
         <!-- Colleges Section -->
