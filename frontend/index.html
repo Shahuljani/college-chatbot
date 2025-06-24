@@ -31,113 +31,163 @@
             width: 100%;
             height: 100%;
             background: url('https://via.placeholder.com/1920x1080?text=Andhra+Pradesh+Scenery') center/cover no-repeat;
-            opacity: 0.08;
+            opacity: 0.1;
             z-index: -1;
         }
+        /* Namaste Welcome Animation */
+        .welcome-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--sapphire);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            animation: fadeOut 3s ease-in-out forwards;
+            animation-delay: 2s;
+        }
+        .namaste-hands {
+            font-size: 6rem;
+            color: var(--gold);
+            animation: handsFold 1.5s ease-in-out;
+        }
+        .welcome-text {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--pearl);
+            margin-top: 1rem;
+            opacity: 0;
+            animation: textAppear 1.5s ease-in-out forwards;
+            animation-delay: 0.5s;
+        }
+        @keyframes handsFold {
+            0% { transform: rotate(-20deg) scale(0.8); opacity: 0; }
+            100% { transform: rotate(0) scale(1); opacity: 1; }
+        }
+        @keyframes textAppear {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; visibility: hidden; }
+        }
+        /* Header */
         .sticky-header {
-            background: linear-gradient(90deg, rgba(30, 42, 74, 0.95), rgba(30, 42, 74, 0.85));
+            background: rgba(30, 42, 74, 0.95);
             backdrop-filter: blur(12px);
             position: sticky;
             top: 0;
             z-index: 100;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            animation: slideIn 0.5s ease-out;
         }
         .nav-link {
-            position: relative;
             color: var(--pearl);
             padding: 0.5rem 1rem;
-            font-weight: 500;
             font-size: 1rem;
+            font-weight: 500;
             transition: all 0.3s ease;
         }
         .nav-link:hover {
             color: var(--gold);
-            transform: translateY(-2px);
         }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 50%;
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 0.3rem;
+            cursor: pointer;
+        }
+        .hamburger span {
+            width: 1.5rem;
+            height: 0.2rem;
             background: var(--gold);
             transition: all 0.3s ease;
-            transform: translateX(-50%);
         }
-        .nav-link:hover::after {
-            width: 60%;
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
         }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            gap: 1rem;
+            background: rgba(30, 42, 74, 0.95);
+            padding: 1rem;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            z-index: 99;
+        }
+        .mobile-nav.active {
+            display: flex;
+        }
+        /* Chatbot */
         .chat-card {
             background: rgba(248, 247, 243, 0.15);
             backdrop-filter: blur(15px);
             border: 1px solid rgba(184, 151, 77, 0.3);
             border-radius: 24px;
-            padding: 1.5rem;
+            padding: 2rem;
             box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
         }
         #chat-container {
-            max-height: 50vh;
-            min-height: 20vh;
+            max-height: 60vh;
+            min-height: 30vh;
             overflow-y: auto;
             scrollbar-width: thin;
             scrollbar-color: var(--gold) var(--sapphire);
             padding: 1.5rem;
             border-radius: 16px;
             background: rgba(248, 247, 243, 0.1);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             border: 1px solid rgba(184, 151, 77, 0.2);
-            transition: max-height 0.3s ease;
+            font-size: 1.1rem;
         }
         #chat-container::-webkit-scrollbar {
-            width: 6px;
+            width: 8px;
         }
         #chat-container::-webkit-scrollbar-track {
             background: var(--sapphire);
         }
         #chat-container::-webkit-scrollbar-thumb {
             background: var(--gold);
-            border-radius: 3px;
+            border-radius: 4px;
         }
         .chat-message {
-            padding: 0.75rem 1.25rem;
-            border-radius: 16px;
-            margin-bottom: 0.75rem;
-            max-width: 80%;
+            padding: 1rem 1.5rem;
+            border-radius: 18px;
+            margin-bottom: 1rem;
+            max-width: 85%;
             animation: fadeIn 0.4s ease;
-            font-size: 0.95rem;
-            line-height: 1.4;
+            font-size: 1.1rem;
+            line-height: 1.5;
         }
         .user-message {
             background: var(--gold);
             color: var(--sapphire);
             margin-left: auto;
-            border-radius: 16px 16px 4px 16px;
+            border-radius: 18px 18px 4px 18px;
         }
         .bot-message {
             background: var(--pearl);
             color: var(--sapphire);
-            border-radius: 16px 16px 16px 4px;
-            position: relative;
-        }
-        .typing-indicator {
-            display: none;
-            padding: 0.75rem 1.25rem;
-            border-radius: 16px;
-            background: var(--pearl);
-            color: var(--sapphire);
-            max-width: 80%;
-            animation: fadeIn 0.4s ease;
-        }
-        .typing-indicator::before {
-            content: 'Typing...';
-            animation: dots 1.5s infinite;
+            border-radius: 18px 18px 18px 4px;
         }
         .input-container {
             display: flex;
             background: rgba(248, 247, 243, 0.2);
-            border-radius: 14px;
+            border-radius: 16px;
             border: 1px solid rgba(184, 151, 77, 0.4);
             overflow: hidden;
         }
@@ -148,46 +198,47 @@
         #user-input {
             background: transparent;
             color: var(--pearl);
-            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            padding: 1rem 1.5rem 1rem 3rem;
             border: none;
             outline: none;
-            font-size: 1rem;
+            font-size: 1.2rem;
             width: 100%;
-            transition: all 0.3s ease;
+            height: 3.5rem;
         }
         #user-input:focus + label,
         #user-input:not(:placeholder-shown) + label {
-            top: -0.5rem;
-            left: 0.75rem;
-            font-size: 0.75rem;
+            top: -0.6rem;
+            left: 1rem;
+            font-size: 0.8rem;
             color: var(--gold);
             background: var(--sapphire);
-            padding: 0 0.25rem;
+            padding: 0 0.3rem;
         }
         .input-field label {
             position: absolute;
-            top: 0.75rem;
-            left: 2.5rem;
+            top: 1.2rem;
+            left: 3rem;
             color: var(--pearl);
-            font-size: 1rem;
+            font-size: 1.2rem;
             pointer-events: none;
             transition: all 0.3s ease;
         }
         .input-icon {
             position: absolute;
-            left: 0.75rem;
+            left: 1rem;
             top: 50%;
             transform: translateY(-50%);
-            width: 1.25rem;
-            height: 1.25rem;
+            width: 1.5rem;
+            height: 1.5rem;
             color: var(--gold);
         }
         #send-btn {
             background: var(--gold);
             color: var(--sapphire);
-            padding: 0.75rem 1.5rem;
+            padding: 1rem 2rem;
             border: none;
             font-weight: 600;
+            font-size: 1.2rem;
             transition: all 0.3s ease;
         }
         #send-btn:hover {
@@ -198,8 +249,8 @@
         .prompt-suggestions {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            padding: 0.75rem 0;
+            gap: 0.75rem;
+            padding: 1rem 0;
             overflow-x: auto;
             scrollbar-width: none;
         }
@@ -209,9 +260,9 @@
         .prompt-btn {
             background: rgba(184, 151, 77, 0.25);
             color: var(--pearl);
-            padding: 0.5rem 1rem;
+            padding: 0.6rem 1.2rem;
             border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: 0.95rem;
             cursor: pointer;
             transition: all 0.3s ease;
             white-space: nowrap;
@@ -282,30 +333,27 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        @keyframes slideIn {
-            from { transform: translateY(-100%); }
-            to { transform: translateY(0); }
-        }
-        @keyframes dots {
-            0%, 20% { content: 'Typing.'; }
-            40% { content: 'Typing..'; }
-            60% { content: 'Typing...'; }
-            80%, 100% { content: 'Typing'; }
-        }
         /* Responsive Design */
         @media (max-width: 1024px) {
             .nav-link {
                 font-size: 0.9rem;
-                padding: 0.5rem 0.75rem;
             }
             #chat-container {
-                max-height: 40vh;
+                max-height: 50vh;
+                min-height: 25vh;
+            }
+            .chat-message {
+                font-size: 1rem;
+            }
+            #user-input, .input-field label {
+                font-size: 1.1rem;
+            }
+            #send-btn {
+                font-size: 1.1rem;
+                padding: 0.75rem 1.5rem;
             }
             .section-card {
                 padding: 1.5rem;
-            }
-            .hero-bg {
-                padding: 4rem 1rem;
             }
             .hero-content h2 {
                 font-size: 2.5rem;
@@ -315,37 +363,36 @@
             }
         }
         @media (max-width: 768px) {
-            .sticky-header {
-                padding: 0.75rem;
+            .desktop-nav {
+                display: none;
             }
-            .header-content {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            nav {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-            .nav-link {
-                font-size: 0.85rem;
-                padding: 0.5rem;
+            .hamburger {
+                display: flex;
             }
             #chat-container {
-                max-height: 35vh;
-                min-height: 15vh;
+                max-height: 45vh;
+                min-height: 20vh;
             }
             .chat-card {
-                padding: 1rem;
+                padding: 1.25rem;
             }
-            .prompt-suggestions {
-                flex-wrap: nowrap;
-                overflow-x: auto;
+            .chat-message {
+                font-size: 0.95rem;
+                padding: 0.75rem 1.25rem;
+            }
+            #user-input, .input-field label {
+                font-size: 1rem;
+            }
+            #send-btn {
+                font-size: 1rem;
+                padding: 0.75rem 1.25rem;
+            }
+            .prompt-btn {
+                font-size: 0.85rem;
+                padding: 0.5rem 1rem;
             }
             .section-card {
-                padding: 1rem;
-            }
-            .college-card {
-                padding: 1rem;
+                padding: 1.25rem;
             }
             .hero-content h2 {
                 font-size: 2rem;
@@ -359,44 +406,38 @@
             }
         }
         @media (max-width: 480px) {
-            .header-content {
-                flex-direction: column;
-                align-items: center;
+            .hamburger {
+                gap: 0.2rem;
             }
-            .logo-container {
-                flex-direction: column;
-                text-align: center;
-            }
-            .logo-container h1 {
-                font-size: 1.5rem;
-            }
-            .nav-link {
-                font-size: 0.8rem;
-                padding: 0.4rem;
+            .hamburger span {
+                width: 1.2rem;
+                height: 0.15rem;
             }
             #chat-container {
-                max-height: 30vh;
-                min-height: 12vh;
+                max-height: 40vh;
+                min-height: 15vh;
             }
             .chat-message {
-                font-size: 0.85rem;
-                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+                padding: 0.6rem 1rem;
             }
-            .input-container {
-                flex-direction: column;
-                gap: 0.5rem;
+            #user-input, .input-field label {
+                font-size: 0.95rem;
+            }
+            .input-field label {
+                top: 1rem;
+                left: 2.5rem;
             }
             #user-input {
-                font-size: 0.9rem;
-                padding: 0.5rem 0.75rem 0.5rem 2rem;
+                padding: 0.75rem 1rem 0.75rem 2.5rem;
+                height: 3rem;
             }
             #send-btn {
-                padding: 0.5rem 1rem;
-                width: 100%;
-                border-radius: 14px;
+                font-size: 0.95rem;
+                padding: 0.75rem 1rem;
             }
             .prompt-btn {
-                font-size: 0.75rem;
+                font-size: 0.8rem;
                 padding: 0.4rem 0.8rem;
             }
             .hero-content h2 {
@@ -405,17 +446,42 @@
             .hero-content p {
                 font-size: 0.85rem;
             }
+            .welcome-text {
+                font-size: 1.5rem;
+            }
+            .namaste-hands {
+                font-size: 4rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Welcome Animation -->
+    <div class="welcome-overlay">
+        <div class="namaste-hands">🙏</div>
+        <div class="welcome-text">Welcome to APaskVidya</div>
+    </div>
+
     <header class="sticky-header">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center header-content">
-            <div class="flex items-center gap-3 logo-container">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-3">
                 <div class="w-10 h-10 bg-gold rounded-lg flex items-center justify-center text-sapphire font-bold text-lg">AV</div>
                 <h1 class="text-2xl font-extrabold text-gold tracking-tight">APaskVidya</h1>
             </div>
-            <nav class="flex gap-4">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav class="desktop-nav flex gap-4">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#chat" class="nav-link">Chatbot</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#colleges" class="nav-link">Colleges</a>
+                <a href="#testimonials" class="nav-link">Testimonials</a>
+                <a href="#admission" class="nav-link">Admission Guide</a>
+            </nav>
+            <nav class="mobile-nav">
                 <a href="#home" class="nav-link">Home</a>
                 <a href="#chat" class="nav-link">Chatbot</a>
                 <a href="#features" class="nav-link">Features</a>
@@ -429,29 +495,28 @@
         <!-- Hero Section -->
         <section id="home" class="section-card hero-bg text-center py-16">
             <div class="hero-content">
-                <h2 class="text-5xl font-extrabold text-gold mb-4 animate-pulse">Discover Andhra Pradesh Colleges</h2>
+                <h2 class="text-5xl font-extrabold text-gold mb-4">Explore Andhra Pradesh Colleges</h2>
                 <p class="text-xl text-pearl max-w-2xl mx-auto">
-                    APaskVidya is your premium guide to top engineering colleges, offering instant insights into courses, fees, and placements.
+                    APaskVidya offers instant insights into top engineering colleges, courses, fees, and placements.
                 </p>
-                <a href="#chat" class="mt-6 inline-block bg-gold text-sapphire px-8 py-3 rounded-full font-semibold hover:bg-[#c9a861] transition-transform transform hover:scale-105">Start Now</a>
+                <a href="#chat" class="mt-6 inline-block bg-gold text-sapphire px-8 py-3 rounded-full font-semibold hover:bg-[#c9a861] transition-transform transform hover:scale-105">Ask Now</a>
             </div>
         </section>
 
         <!-- Chatbot Section -->
         <section id="chat" class="section-card">
-            <h3 class="text-3xl font-bold text-gold mb-4 text-center">Engage with APaskVidya</h3>
-            <p class="text-pearl mb-6 text-center">Ask about colleges, admissions, or placements with our intelligent chatbot.</p>
+            <h3 class="text-3xl font-bold text-gold mb-4 text-center">Ask APaskVidya</h3>
+            <p class="text-pearl mb-6 text-center">Get answers about colleges, admissions, or placements instantly.</p>
             <div class="chat-card">
                 <div id="chat-container" class="flex flex-col">
-                    <div class="bot-message">Hello! I'm APaskVidya. Ask me about Andhra Pradesh colleges, like courses, fees, or placements.</div>
+                    <div class="bot-message">Namaste! I'm APaskVidya. Ask about Andhra Pradesh colleges!</div>
                 </div>
-                <div class="typing-indicator"></div>
                 <div class="prompt-suggestions">
-                    <button class="prompt-btn" onclick="setPrompt('Compare VIT and SRM placements')">Compare VIT vs SRM?</button>
-                    <button class="prompt-btn" onclick="setPrompt('What is the admission process for KLEF?')">KLEF Admissions?</button>
-                    <button class="prompt-btn" onclick="setPrompt('Courses offered at YITS?')">YITS Courses?</button>
-                    <button class="prompt-btn" onclick="setPrompt('What are the fees at CITM?')">CITM Fees?</button>
-                    <button class="prompt-btn" onclick="setPrompt('Contact details for ABIT?')">ABIT Contact?</button>
+                    <button class="prompt-btn" onclick="setPrompt('Which college is better, VIT or KLEF?')">VIT vs KLEF?</button>
+                    <button class="prompt-btn" onclick="setPrompt('What is the fee structure at SRM?')">SRM Fees?</button>
+                    <button class="prompt-btn" onclick="setPrompt('Admission deadlines for CITM?')">CITM Deadlines?</button>
+                    <button class="prompt-btn" onclick="setPrompt('Placement stats for YITS?')">YITS Placements?</button>
+                    <button class="prompt-btn" onclick="setPrompt('Contact number for ABIT?')">ABIT Contact?</button>
                 </div>
                 <div class="input-container">
                     <div class="input-field">
@@ -471,16 +536,16 @@
             <h3 class="text-3xl font-bold text-gold mb-4 text-center">Why APaskVidya?</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="college-card">
-                    <h4 class="text-xl font-semibold text-gold mb-2">Course Insights</h4>
+                    <h4 class="text-xl font-semibold text-gold mb-2">Course Details</h4>
                     <p class="text-pearl">Explore programs like CSE(AIML) at CITM or AI&ML at SRM.</p>
                 </div>
                 <div class="college-card">
                     <h4 class="text-xl font-semibold text-gold mb-2">Fees & Placements</h4>
-                    <p class="text-pearl">Find fee details (e.g., ₹43k at CITM) and placement stats (95% at VIT).</p>
+                    <p class="text-pearl">Access fees (e.g., ₹43k at CITM) and placement stats (95% at VIT).</p>
                 </div>
                 <div class="college-card">
-                    <h4 class="text-xl font-semibold text-gold mb-2">Instant Contact</h4>
-                    <p class="text-pearl">Reach colleges like YITS at 0877-2274699 instantly.</p>
+                    <h4 class="text-xl font-semibold text-gold mb-2">Quick Contact</h4>
+                    <p class="text-pearl">Reach colleges like YITS at 0877-2274699.</p>
                 </div>
             </div>
         </section>
@@ -569,12 +634,12 @@
             <h3 class="text-3xl font-bold text-gold mb-4 text-center">Student Stories</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="college-card">
-                    <p class="text-pearl italic">"APaskVidya helped me compare VIT and SRM placements, making my decision easy."</p>
+                    <p class="text-pearl italic">"APaskVidya's comparison of VIT and KLEF was a game-changer for me."</p>
                     <p class="text-gold font-semibold mt-2">— Priya, VIT-AP</p>
                 </div>
                 <div class="college-card">
-                    <p class="text-pearl italic">"The chatbot's quick response on KLEF's admission process was a lifesaver."</p>
-                    <p class="text-gold font-semibold mt-2">— Anil, KLEF</p>
+                    <p class="text-pearl italic">"Quick answers on SRM's fees helped me plan my admission."</p>
+                    <p class="text-gold font-semibold mt-2">— Anil, SRM-AP</p>
                 </div>
             </div>
         </section>
@@ -582,7 +647,7 @@
         <!-- Admission Guide Section -->
         <section id="admission" class="section-card">
             <h3 class="text-3xl font-bold text-gold mb-4 text-center">Admission Guide</h3>
-            <p class="text-pearl mb-6 text-center">Navigate Andhra Pradesh college admissions with confidence.</p>
+            <p class="text-pearl mb-6 text-center">Navigate Andhra Pradesh college admissions with ease.</p>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="college-card">
                     <h4 class="text-xl font-semibold text-gold mb-2">Convener Quota</h4>
@@ -590,7 +655,7 @@
                 </div>
                 <div class="college-card">
                     <h4 class="text-xl font-semibold text-gold mb-2">Management Quota</h4>
-                    <p class="text-pearl">Contact colleges like SRM (8632343000) for direct admission options.</p>
+                    <p class="text-pearl">Contact colleges like SRM (8632343000) for direct admissions.</p>
                 </div>
             </div>
         </section>
@@ -642,6 +707,14 @@
     </footer>
     <script src="scripts.js"></script>
     <script>
+        // Hamburger Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const mobileNav = document.querySelector('.mobile-nav');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+        });
+
         // Toggle college details
         document.querySelectorAll('.college-card').forEach(card => {
             card.addEventListener('click', () => {
@@ -656,21 +729,6 @@
             input.value = prompt;
             input.focus();
         }
-
-        // Typing indicator logic
-        const sendBtn = document.getElementById('send-btn');
-        const chatContainer = document.getElementById('chat-container');
-        const typingIndicator = document.querySelector('.typing-indicator');
-
-        sendBtn.addEventListener('click', () => {
-            if (document.getElementById('user-input').value.trim()) {
-                typingIndicator.style.display = 'block';
-                chatContainer.scrollTo({ top: chatContainer.scrollHeight, behavior: 'smooth' });
-                setTimeout(() => {
-                    typingIndicator.style.display = 'none';
-                }, 1000);
-            }
-        });
     </script>
 </body>
 </html>
