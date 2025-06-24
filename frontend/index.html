@@ -11,7 +11,7 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, rgba(26, 26, 46, 0.8) 0%, rgba(22, 33, 62, 0.8) 100%), url('images/body-bg.jpg') no-repeat center center fixed;
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.8) 0%, rgba(22, 33, 62, 0.8) 100%), url('images/body-bg.jpg') no-repeat center center;
             background-size: cover;
             color: #e0e0e0;
             min-height: 100vh;
@@ -45,7 +45,7 @@
         }
 
         #welcome-message h1 {
-            font-size: 2.5rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: #eab308;
             text-shadow: 0 0 10px rgba(234, 179, 8, 0.5);
@@ -167,6 +167,58 @@
             backdrop-filter: blur(10px);
             border-top: 1px solid rgba(234, 179, 8, 0.2);
         }
+
+        /* Responsive adjustments */
+        @media (max-width: 640px) {
+            #welcome-message h1 {
+                font-size: 1.25rem;
+                padding: 16px;
+            }
+
+            .container {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+
+            #chat-container {
+                height: 70vh;
+            }
+
+            .card {
+                padding: 12px;
+            }
+
+            h2 {
+                font-size: 1.75rem;
+            }
+
+            .collapsible {
+                padding: 10px 14px;
+                font-size: 0.9rem;
+            }
+
+            .content {
+                padding: 10px;
+            }
+        }
+
+        @media (min-width: 641px) and (max-width: 1024px) {
+            #welcome-message h1 {
+                font-size: 2rem;
+            }
+
+            #chat-container {
+                height: 80vh;
+            }
+
+            .card {
+                padding: 14px;
+            }
+
+            h2 {
+                font-size: 2.25rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -225,7 +277,7 @@
         <!-- Colleges Section -->
         <section id="colleges" class="py-16">
             <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-10">Featured Colleges</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                 <div class="card p-6">
                     <h3 class="text-xl font-semibold text-white">VIT</h3>
                     <p class="text-gray-300">Renowned for its exceptional 95% placement rate and specialized courses like CSE(AIML).</p>
@@ -837,8 +889,16 @@
             content.style.display = content.style.display === 'block' ? 'none' : 'block';
         }
 
-        // Fade out welcome message after 3 seconds
-        window.addEventListener('load', function() {
+        // Add event listeners to all collapsible elements
+        document.addEventListener('DOMContentLoaded', function() {
+            const collapsibles = document.querySelectorAll('.collapsible');
+            collapsibles.forEach(collapsible => {
+                collapsible.addEventListener('click', function() {
+                    toggleCollapsible(this);
+                });
+            });
+
+            // Fade out welcome message after 3 seconds
             const welcomeMessage = document.getElementById('welcome-message');
             setTimeout(() => {
                 welcomeMessage.classList.add('fade-out');
