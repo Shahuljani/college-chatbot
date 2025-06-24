@@ -3,19 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>College Info Chatbot</title>
+    <title>APaskVidya - Andhra Pradesh College Chatbot</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Custom styles for premium look */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        }
+        .chat-bubble-user {
+            background-color: #1e3a8a;
+            color: white;
+            border-radius: 12px 12px 0 12px;
+            padding: 10px;
+            margin: 5px 0;
+            max-width: 80%;
+            align-self: flex-end;
+        }
+        .chat-bubble-bot {
+            background-color: #f3f4f6;
+            color: #1f2937;
+            border-radius: 12px 12px 12px 0;
+            padding: 10px;
+            margin: 5px 0;
+            max-width: 80%;
+            align-self: flex-start;
+        }
+        .shadow-gold {
+            box-shadow: 0 4px 6px rgba(234, 179, 8, 0.2);
+        }
+    </style>
 </head>
-<body class="bg-gray-100 flex items-center justify-center h-screen">
-    <div class="w-full max-w-md bg-white rounded-lg shadow-lg p-6">
-        <h1 class="text-2xl font-bold text-center mb-4">College Info Chatbot</h1>
-        <div id="chat-container" class="mb-4 flex flex-col"></div>
-        <div class="flex">
-            <input id="user-input" type="text" class="flex-1 p-2 border rounded-l-lg focus:outline-none" placeholder="Ask about a college...">
-            <button id="send-btn" class="bg-blue-500 text-white p-2 rounded-r-lg hover:bg-blue-600">Send</button>
+<body class="bg-gray-50">
+    <!-- Sticky Header -->
+    <header class="sticky top-0 z-50 gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl md:text-3xl font-bold">APaskVidya</h1>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#home" class="hover:text-yellow-300 transition">Home</a>
+                <a href="#about" class="hover:text-yellow-300 transition">About</a>
+                <a href="#colleges" class="hover:text-yellow-300 transition">Colleges</a>
+                <a href="#questions" class="hover:text-yellow-300 transition">Sample Questions</a>
+                <a href="#contact" class="hover:text-yellow-300 transition">Contact</a>
+            </nav>
+            <button class="md:hidden focus:outline-none" onclick="toggleMenu()">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
         </div>
-    </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white text-gray-800 shadow-lg">
+            <a href="#home" class="block px-4 py-2 hover:bg-gray-100">Home</a>
+            <a href="#about" class="block px-4 py-2 hover:bg-gray-100">About</a>
+            <a href="#colleges" class="block px-4 py-2 hover:bg-gray-100">Colleges</a>
+            <a href="#questions" class="block px-4 py-2 hover:bg-gray-100">Sample Questions</a>
+            <a href="#contact" class="block px-4 py-2 hover:bg-gray-100">Contact</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Hero Section -->
+        <section id="home" class="text-center py-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Discover Andhra Pradesh Colleges</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                APaskVidya is your go-to platform for finding detailed information about engineering colleges in Andhra Pradesh. Ask about courses, fees, placements, and more!
+            </p>
+        </section>
+
+        <!-- Chatbot Section -->
+        <section id="chatbot" class="bg-white rounded-lg shadow-gold p-6 mb-12 max-w-3xl mx-auto">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Chat with APaskVidya</h2>
+            <div id="chat-container" class="h-96 overflow-y-auto mb-4 flex flex-col p-4 bg-gray-100 rounded-lg"></div>
+            <div class="flex gap-2">
+                <input id="user-input" type="text" class="flex-1 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500" placeholder="Ask about a college (e.g., Courses at VIT?)">
+                <button id="send-btn" class="bg-blue-900 text-white p-3 rounded-lg hover:bg-yellow-600 transition">Send</button>
+            </div>
+        </section>
+
+        <!-- Colleges Section -->
+        <section id="colleges" class="py-12">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-8">Featured Colleges</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-lg shadow-gold p-6">
+                    <h3 class="text-xl font-semibold text-gray-800">VIT</h3>
+                    <p class="text-gray-600">Known for its excellent placements (95%) and diverse courses like CSE(AIML).</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-gold p-6">
+                    <h3 class="text-xl font-semibold text-gray-800">SRM University</h3>
+                    <p class="text-gray-600">Rated 4.3/5, offering top-tier engineering programs.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-gold p-6">
+                    <h3 class="text-xl font-semibold text-gray-800">KLEF</h3>
+                    <p class="text-gray-600">Affordable fees and strong industry connections.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sample Questions Section -->
+        <section id="questions" class="py-12 bg-gray-100 rounded-lg">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-8">Sample Questions for CITM</h2>
+            <div class="max-w-3xl mx-auto">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Courses</h3>
+                <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <li>What are the courses at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
+                    <li>What are the courses at CITM?</li>
+                    <li>Which courses are offered by COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
+                    <li>Which courses are offered by CITM?</li>
+                    <li>List the courses available at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT.</li>
+                    <li>List the courses available at CITM.</li>
+                    <li>What are the programs at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
+                    <li>Which programs are offered by COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
+                    <li>List the programs available at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT.</li>
+                </ul>
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Convener Quota Fees</h3>
+                <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <li>What is the convener quota fee at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
+                    <li>What is the convener quota fee at CITM?</li>
+                    <li>How much is the annual fee for convener quota at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
+                    <li>How much is the annual fee for convener quota at CITM?</li>
+                    <li>Tell me the convener quota fees for COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT.</li>
+                    <li>Tell me the convener quota fees for CITM.</li>
+                </ul>
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Management Quota Fees</h3>
+                <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <li>What is the management quota fee at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
+                    <li>What is the management quota fee at CITM?</li>
+                    <li>How much is the management quota fee at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
+                    <li>How much is the management quota fee at CITM?</li>
+                    <li>Tell me the management quota fees for COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT.</li>
+                    <li>Tell me the management quota fees for CITM.</li>
+                </ul>
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Placements</h3>
+                <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <li>What is the placement percentage at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
+                    <li>What is the placement percentage at CITM?</li>
+                    <li>How good are placements at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
+                    <li>How good are placements at CITM?</li>
+                    <li>Tell me about COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT placements.</li>
+                    <li>Tell me about CITM placements.</li>
+                </ul>
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Contact Information</h3>
+                <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <li>What is the contact number for COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
+                    <li>What is the contact number for CITM?</li>
+                    <li>How can I contact COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
+                    <li>How can I contact CITM?</li>
+                    <li>Give me the phone number of COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT.</li>
+                    <li>Give me the phone number of CITM.</li>
+                </ul>
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">General Information</h3>
+                <ul class="list-disc list-inside text-gray-600">
+                    <li>Tell me about COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT.</li>
+                    <li>Tell me about CITM.</li>
+                    <li>What are the details of COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
+                    <li>What are the details of CITM?</li>
+                    <li>Give me information about COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT.</li>
+                    <li>Give me information about CITM.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-12 bg-gray-100 rounded-lg">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-8">About APaskVidya</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto text-center">
+                APaskVidya is designed to help students, parents, and educators explore engineering colleges in Andhra Pradesh. Our chatbot provides instant answers on courses, fees, placements, and more, making college research effortless.
+            </p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact" class="gradient-bg text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <h3 class="text-xl font-semibold mb-4">Contact Us</h3>
+            <p class="text-gray-200">Have questions? Reach out at <a href="mailto:support@apaskvidya.com" class="underline hover:text-yellow-300">support@apaskvidya.com</a></p>
+            <p class="mt-4 text-gray-300">© 2025 APaskVidya. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
     <script src="scripts.js"></script>
-</body>
-</html>
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+    </script>
