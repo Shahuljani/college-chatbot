@@ -6,59 +6,185 @@
     <title>APaskVidya - Andhra Pradesh College Chatbot</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Custom styles for premium look */
+        /* Premium dark theme with gold accents */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.8) 0%, rgba(22, 33, 62, 0.8) 100%), url('images/body-bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #e0e0e0;
+            min-height: 100vh;
+            margin: 0;
         }
-        .gradient-bg {
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
         }
+
+        /* Welcome message styles */
+        #welcome-message {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 20, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 1;
+            transition: opacity 1s ease;
+        }
+
+        #welcome-message.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        #welcome-message h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #eab308;
+            text-shadow: 0 0 10px rgba(234, 179, 8, 0.5);
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Header styles */
+        header {
+            background: rgba(10, 10, 20, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(234, 179, 8, 0.2);
+        }
+
+        header a {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        header a:hover::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #eab308;
+        }
+
+        /* Chat bubble styles */
         .chat-bubble-user {
-            background-color: #1e3a8a;
-            color: white;
-            border-radius: 12px 12px 0 12px;
-            padding: 10px;
-            margin: 5px 0;
-            max-width: 80%;
+            background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%);
+            color: #1a1a2e;
+            border-radius: 16px 16px 4px 16px;
+            padding: 12px 16px;
+            margin: 8px 0;
+            max-width: 75%;
             align-self: flex-end;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease;
         }
+
+        .chat-bubble-user:hover {
+            transform: translateY(-2px);
+        }
+
         .chat-bubble-bot {
-            background-color: #f3f4f6;
-            color: #1f2937;
-            border-radius: 12px 12px 12px 0;
-            padding: 10px;
-            margin: 5px 0;
-            max-width: 80%;
+            background: #2a2a4e;
+            color: #e0e0e0;
+            border-radius: 16px 16px 16px 4px;
+            padding: 12px 16px;
+            margin: 8px 0;
+            max-width: 75%;
             align-self: flex-start;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease;
         }
-        .shadow-gold {
-            box-shadow: 0 4px 6px rgba(234, 179, 8, 0.2);
+
+        .chat-bubble-bot:hover {
+            transform: translateY(-2px);
         }
+
+        /* Card styles */
+        .card {
+            background: rgba(26, 26, 46, 0.9);
+            border: 1px solid rgba(234, 179, 8, 0.1);
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(234, 179, 8, 0.2);
+        }
+
+        /* Collapsible styles */
         .collapsible {
             cursor: pointer;
-            padding: 10px;
-            background-color: #1e3a8a;
-            color: white;
-            border-radius: 8px;
+            padding: 12px 16px;
+            background: linear-gradient(90deg, #eab308 0%, #ca8a04 100%);
+            color: #1a1a2e;
+            border-radius: 4px;
             margin-bottom: 8px;
+            font-weight: 600;
+            transition: background 0.3s ease;
         }
+
+        .collapsible:hover {
+            background: linear-gradient(90deg, #facc15 0%, #eab308 100%);
+        }
+
         .content {
             display: none;
-            padding: 10px;
+            padding: 12px;
+            background: rgba(26, 26, 46, 0.9);
+            border-radius: 4px;
+            border: 1px solid rgba(234, 176, 8, 0.1);
+        }
+
+        /* Button styles */
+        button {
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Input focus styles */
+        input:focus {
+            outline: none;
+            ring: 2px solid #eab308;
+            border-color: #eab308;
+        }
+
+        /* Footer styles */
+        footer {
+            background: rgba(10, 10, 20, 0.95);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(234, 179, 8, 0.2);
         }
     </style>
 </head>
-<body class="bg-gray-50">
+<body>
+    <!-- Welcome Message -->
+    <div id="welcome-message">
+        <h1>Namaste, Welcome to APaskVidya</h1>
+    </div>
+
     <!-- Sticky Header -->
-    <header class="sticky top-0 z-50 gradient-bg text-white shadow-lg">
+    <header class="sticky top-0 z-50 text-white shadow-lg">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <h1 class="text-2xl md:text-3xl font-bold">APaskVidya</h1>
-            <nav class="hidden md:flex space-x-6">
-                <a href="#home" class="hover:text-yellow-300 transition">Home</a>
-                <a href="#about" class="hover:text-yellow-300 transition">About</a>
-                <a href="#colleges" class="hover:text-yellow-300 transition">Colleges</a>
-                <a href="#questions" class="hover:text-yellow-300 transition">Sample Questions</a>
-                <a href="#contact" class="hover:text-yellow-300 transition">Contact</a>
+            <h1 class="text-2xl md:text-3xl font-bold tracking-tight">APaskVidya</h1>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="text-lg hover:text-yellow-400 transition">Home</a>
+                <a href="#about" class="text-lg hover:text-yellow-400 transition">About</a>
+                <a href="#colleges" class="text-lg hover:text-yellow-400 transition">Colleges</a>
+                <a href="#questions" class="text-lg hover:text-yellow-400 transition">Sample Questions</a>
+                <a href="#contact" class="text-lg hover:text-yellow-400 transition">Contact</a>
             </nav>
             <button class="md:hidden focus:outline-none" onclick="toggleMenu()">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -67,64 +193,64 @@
             </button>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white text-gray-800 shadow-lg">
-            <a href="#home" class="block px-4 py-2 hover:bg-gray-100">Home</a>
-            <a href="#about" class="block px-4 py-2 hover:bg-gray-100">About</a>
-            <a href="#colleges" class="block px-4 py-2 hover:bg-gray-100">Colleges</a>
-            <a href="#questions" class="block px-4 py-2 hover:bg-gray-100">Sample Questions</a>
-            <a href="#contact" class="block px-4 py-2 hover:bg-gray-100">Contact</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900 text-white shadow-lg">
+            <a href="#home" class="block px-4 py-3 hover:bg-gray-800 transition">Home</a>
+            <a href="#about" class="block px-4 py-3 hover:bg-gray-800 transition">About</a>
+            <a href="#colleges" class="block px-4 py-3 hover:bg-gray-800 transition">Colleges</a>
+            <a href="#questions" class="block px-4 py-3 hover:bg-gray-800 transition">Sample Questions</a>
+            <a href="#contact" class="block px-4 py-3 hover:bg-gray-800 transition">Contact</a>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-4 py-8">
+    <main class="container mx-auto px-4 py-12">
         <!-- Hero Section -->
-        <section id="home" class="text-center py-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Discover Andhra Pradesh Colleges</h2>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                APaskVidya is your go-to platform for finding detailed information about engineering colleges in Andhra Pradesh. Ask about courses, fees, placements, and more!
+        <section id="home" class="text-center py-16">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Discover Andhra Pradesh Colleges</h2>
+            <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+                APaskVidya is your premium platform for exploring engineering colleges in Andhra Pradesh. Get instant insights on courses, fees, placements, and more with our intelligent chatbot.
             </p>
         </section>
 
         <!-- Chatbot Section -->
-        <section id="chatbot" class="bg-white rounded-lg shadow-gold p-6 mb-12 max-w-3xl mx-auto">
-            <h2 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Chat with APaskVidya</h2>
-            <div id="chat-container" class="h-96 overflow-y-auto mb-4 flex flex-col p-4 bg-gray-100 rounded-lg"></div>
-            <div class="flex gap-2">
-                <input id="user-input" type="text" class="flex-1 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500" placeholder="Ask about a college (e.g., Courses at VIT?)">
-                <button id="send-btn" class="bg-blue-900 text-white p-3 rounded-lg hover:bg-yellow-600 transition">Send</button>
+        <section id="chatbot" class="card p-8 mb-12 max-w-4xl mx-auto">
+            <h2 class="text-3xl font-semibold text-white mb-6 text-center">Chat with APaskVidya</h2>
+            <div id="chat-container" class="h-96 overflow-y-auto mb-6 flex flex-col p-6 bg-gray-900 rounded-lg"></div>
+            <div class="flex gap-3">
+                <input id="user-input" type="text" class="flex-1 p-4 bg-gray-800 border border-gray-700 text-white rounded-lg focus:ring-2 focus:ring-yellow-400 placeholder-gray-400" placeholder="Ask about a college (e.g., Courses at VIT?)">
+                <button id="send-btn" class="bg-yellow-400 text-gray-900 p-4 rounded-lg hover:bg-yellow-300 font-semibold">Send</button>
             </div>
         </section>
 
         <!-- Colleges Section -->
-        <section id="colleges" class="py-12">
-            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-8">Featured Colleges</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-white rounded-lg shadow-gold p-6">
-                    <h3 class="text-xl font-semibold text-gray-800">VIT</h3>
-                    <p class="text-gray-600">Known for its excellent placements (95%) and diverse courses like CSE(AIML).</p>
+        <section id="colleges" class="py-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-10">Featured Colleges</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card p-6">
+                    <h3 class="text-xl font-semibold text-white">VIT</h3>
+                    <p class="text-gray-300">Renowned for its exceptional 95% placement rate and specialized courses like CSE(AIML).</p>
                 </div>
-                <div class="bg-white rounded-lg shadow-gold p-6">
-                    <h3 class="text-xl font-semibold text-gray-800">SRM University</h3>
-                    <p class="text-gray-600">Rated 4.3/5, offering top-tier engineering programs.</p>
+                <div class="card p-6">
+                    <h3 class="text-xl font-semibold text-white">SRM University</h3>
+                    <p class="text-gray-300">Rated 4.3/5, offering cutting-edge engineering programs.</p>
                 </div>
-                <div class="bg-white rounded-lg shadow-gold p-6">
-                    <h3 class="text-xl font-semibold text-gray-800">KLEF</h3>
-                    <p class="text-gray-600">Affordable fees and strong industry connections.</p>
+                <div class="card p-6">
+                    <h3 class="text-xl font-semibold text-white">KLEF</h3>
+                    <p class="text-gray-300">Competitive fees with strong industry partnerships.</p>
                 </div>
             </div>
         </section>
 
         <!-- Sample Questions Section -->
-        <section id="questions" class="py-12 bg-gray-100 rounded-lg">
-            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-8">Sample Questions for Colleges</h2>
-            <p class="text-center text-gray-600 mb-6">Click on a college to view sample questions you can ask the chatbot.</p>
-            <div class="max-w-3xl mx-auto">
+        <section id="questions" class="py-16 bg-gray-900 rounded-lg">
+            <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-10">Sample Questions for Colleges</h2>
+            <p class="text-center text-gray-300 mb-8">Click on a college to view sample questions you can ask the chatbot.</p>
+            <div class="max-w-4xl mx-auto">
                 <!-- Coastal Institute of Technology & Management -->
-                <div class="collapsible" onclick="toggleCollapsible(this)">Coastal Institute of Technology & Management (CITM)</div>
+                <div class="collapsible">Coastal Institute of Technology & Management (CITM)</div>
                 <div class="content">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Courses</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Courses</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What are the courses at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
                         <li>What are the courses at CITM?</li>
                         <li>Which courses are offered by COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
@@ -135,8 +261,8 @@
                         <li>Which programs are offered by COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
                         <li>List the programs available at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Convener Quota Fees</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Convener Quota Fees</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What is the convener quota fee at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
                         <li>What is the convener quota fee at CITM?</li>
                         <li>How much is the annual fee for convener quota at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
@@ -144,8 +270,8 @@
                         <li>Tell me the convener quota fees for COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT.</li>
                         <li>Tell me the convener quota fees for CITM.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Management Quota Fees</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Management Quota Fees</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What is the management quota fee at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
                         <li>What is the management quota fee at CITM?</li>
                         <li>How much is the management quota fee at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
@@ -153,8 +279,8 @@
                         <li>Tell me the management quota fees for COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT.</li>
                         <li>Tell me the management quota fees for CITM.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Placements</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Placements</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What is the placement percentage at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
                         <li>What is the placement percentage at CITM?</li>
                         <li>How good are placements at COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
@@ -162,8 +288,8 @@
                         <li>Tell me about COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT placements.</li>
                         <li>Tell me about CITM placements.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Contact Information</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Contact Information</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What is the contact number for COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
                         <li>What is the contact number for CITM?</li>
                         <li>How can I contact COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
@@ -171,8 +297,8 @@
                         <li>Give me the phone number of COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT.</li>
                         <li>Give me the phone number of CITM.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">General Information</h3>
-                    <ul class="list-disc list-inside text-gray-600">
+                    <h3 class="text-xl font-semibold text-white mb-4">General Information</h3>
+                    <ul class="list-disc list-inside text-gray-300">
                         <li>Tell me about COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT.</li>
                         <li>Tell me about CITM.</li>
                         <li>What are the details of COASTAL INSTITUTE OF TECHNOLOGY & MANAGEMENT?</li>
@@ -183,10 +309,10 @@
                 </div>
 
                 <!-- Akshaya Bharathi Institute of Technology -->
-                <div class="collapsible" onclick="toggleCollapsible(this)">Akshaya Bharathi Institute of Technology (ABIT)</div>
+                <div class="collapsible">Akshaya Bharathi Institute of Technology (ABIT)</div>
                 <div class="content">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Courses</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Courses</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What are the courses at Akshaya Bharathi Institute of Technology?</li>
                         <li>What are the courses at ABIT?</li>
                         <li>Which courses are offered by Akshaya Bharathi Institute of Technology?</li>
@@ -197,8 +323,8 @@
                         <li>Which programs are offered by Akshaya Bharathi Institute of Technology?</li>
                         <li>List the programs available at Akshaya Bharathi Institute of Technology.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Convener Quota Fees</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Convener Quota Fees</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What is the convener quota fee at Akshaya Bharathi Institute of Technology?</li>
                         <li>What is the convener quota fee at ABIT?</li>
                         <li>How much is the annual fee for convener quota at Akshaya Bharathi Institute of Technology?</li>
@@ -206,8 +332,8 @@
                         <li>Tell me the convener quota fees for Akshaya Bharathi Institute of Technology.</li>
                         <li>Tell me the convener quota fees for ABIT.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Management Quota Fees</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Management Quota Fees</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What is the management quota fee at Akshaya Bharathi Institute of Technology?</li>
                         <li>What is the management quota fee at ABIT?</li>
                         <li>How much is the management quota fee at Akshaya Bharathi Institute of Technology?</li>
@@ -215,8 +341,8 @@
                         <li>Tell me the management quota fees for Akshaya Bharathi Institute of Technology.</li>
                         <li>Tell me the management quota fees for ABIT.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Placements</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Placements</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What is the placement percentage at Akshaya Bharathi Institute of Technology?</li>
                         <li>What is the placement percentage at ABIT?</li>
                         <li>How good are placements at Akshaya Bharathi Institute of Technology?</li>
@@ -224,8 +350,8 @@
                         <li>Tell me about Akshaya Bharathi Institute of Technology placements.</li>
                         <li>Tell me about ABIT placements.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Contact Information</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Contact Information</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What is the contact number for Akshaya Bharathi Institute of Technology?</li>
                         <li>What is the contact number for ABIT?</li>
                         <li>How can I contact Akshaya Bharathi Institute of Technology?</li>
@@ -233,8 +359,8 @@
                         <li>Give me the phone number of Akshaya Bharathi Institute of Technology.</li>
                         <li>Give me the phone number of ABIT.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">General Information</h3>
-                    <ul class="list-disc list-inside text-gray-600">
+                    <h3 class="text-xl font-semibold text-white mb-4">General Information</h3>
+                    <ul class="list-disc list-inside text-gray-300">
                         <li>Tell me about Akshaya Bharathi Institute of Technology.</li>
                         <li>Tell me about ABIT.</li>
                         <li>What are the details of Akshaya Bharathi Institute of Technology?</li>
@@ -245,10 +371,10 @@
                 </div>
 
                 <!-- ABR College Of Engineering & Technology -->
-                <div class="collapsible" onclick="toggleCollapsible(this)">ABR College Of Engineering & Technology (ABRK)</div>
+                <div class="collapsible">ABR College Of Engineering & Technology (ABRK)</div>
                 <div class="content">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Courses</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Courses</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What are the courses at ABR College Of Engineering & Technology?</li>
                         <li>What are the courses at ABRK?</li>
                         <li>Which courses are offered by ABR College Of Engineering & Technology?</li>
@@ -259,8 +385,8 @@
                         <li>Which programs are offered by ABR College Of Engineering & Technology?</li>
                         <li>List the programs available at ABR College Of Engineering & Technology.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Convener Quota Fees</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Convener Quota Fees</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What is the convener quota fee at ABR College Of Engineering & Technology?</li>
                         <li>What is the convener quota fee at ABRK?</li>
                         <li>How much is the annual fee for convener quota at ABR College Of Engineering & Technology?</li>
@@ -268,8 +394,8 @@
                         <li>Tell me the convener quota fees for ABR College Of Engineering & Technology.</li>
                         <li>Tell me the convener quota fees for ABRK.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Management Quota Fees</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Management Quota Fees</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What is the management quota fee at ABR College Of Engineering & Technology?</li>
                         <li>What is the management quota fee at ABRK?</li>
                         <li>How much is the management quota fee at ABR College Of Engineering & Technology?</li>
@@ -277,8 +403,8 @@
                         <li>Tell me the management quota fees for ABR College Of Engineering & Technology.</li>
                         <li>Tell me the management quota fees for ABRK.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Placements</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Placements</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What is the placement percentage at ABR College Of Engineering & Technology?</li>
                         <li>What is the placement percentage at ABRK?</li>
                         <li>How good are placements at ABR College Of Engineering & Technology?</li>
@@ -286,8 +412,8 @@
                         <li>Tell me about ABR College Of Engineering & Technology placements.</li>
                         <li>Tell me about ABRK placements.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Contact Information</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Contact Information</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What is the contact number for ABR College Of Engineering & Technology?</li>
                         <li>What is the contact number for ABRK?</li>
                         <li>How can I contact ABR College Of Engineering & Technology?</li>
@@ -295,8 +421,8 @@
                         <li>Give me the phone number of ABR College Of Engineering & Technology.</li>
                         <li>Give me the phone number of ABRK.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">General Information</h3>
-                    <ul class="list-disc list-inside text-gray-600">
+                    <h3 class="text-xl font-semibold text-white mb-4">General Information</h3>
+                    <ul class="list-disc list-inside text-gray-300">
                         <li>Tell me about ABR College Of Engineering & Technology.</li>
                         <li>Tell me about ABRK.</li>
                         <li>What are the details of ABR College Of Engineering & Technology?</li>
@@ -307,10 +433,10 @@
                 </div>
 
                 <!-- Adarsh College of Engineering -->
-                <div class="collapsible" onclick="toggleCollapsible(this)">Adarsh College of Engineering (ACEE)</div>
+                <div class="collapsible">Adarsh College of Engineering (ACEE)</div>
                 <div class="content">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Courses</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Courses</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What are the courses at Adarsh College of Engineering?</li>
                         <li>What are the courses at ACEE?</li>
                         <li>Which courses are offered by Adarsh College of Engineering?</li>
@@ -321,8 +447,8 @@
                         <li>Which programs are offered by Adarsh College of Engineering?</li>
                         <li>List the programs available at Adarsh College of Engineering.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Convener Quota Fees</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Convener Quota Fees</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What is the convener quota fee at Adarsh College of Engineering?</li>
                         <li>What is the convener quota fee at ACEE?</li>
                         <li>How much is the annual fee for convener quota at Adarsh College of Engineering?</li>
@@ -330,8 +456,8 @@
                         <li>Tell me the convener quota fees for Adarsh College of Engineering.</li>
                         <li>Tell me the convener quota fees for ACEE.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Management Quota Fees</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Management Quota Fees</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What is the management quota fee at Adarsh College of Engineering?</li>
                         <li>What is the management quota fee at ACEE?</li>
                         <li>How much is the management quota fee at Adarsh College of Engineering?</li>
@@ -339,8 +465,8 @@
                         <li>Tell me the management quota fees for Adarsh College of Engineering.</li>
                         <li>Tell me the management quota fees for ACEE.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Placements</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Placements</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What is the placement percentage at Adarsh College of Engineering?</li>
                         <li>What is the placement percentage at ACEE?</li>
                         <li>How good are placements at Adarsh College of Engineering?</li>
@@ -348,8 +474,8 @@
                         <li>Tell me about Adarsh College of Engineering placements.</li>
                         <li>Tell me about ACEE placements.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Contact Information</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Contact Information</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What is the contact number for Adarsh College of Engineering?</li>
                         <li>What is the contact number for ACEE?</li>
                         <li>How can I contact Adarsh College of Engineering?</li>
@@ -357,8 +483,8 @@
                         <li>Give me the phone number of Adarsh College of Engineering.</li>
                         <li>Give me the phone number of ACEE.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">General Information</h3>
-                    <ul class="list-disc list-inside text-gray-600">
+                    <h3 class="text-xl font-semibold text-white mb-4">General Information</h3>
+                    <ul class="list-disc list-inside text-gray-300">
                         <li>Tell me about Adarsh College of Engineering.</li>
                         <li>Tell me about ACEE.</li>
                         <li>What are the details of Adarsh College of Engineering?</li>
@@ -369,10 +495,10 @@
                 </div>
 
                 <!-- Aditya College of Engineering and Technology -->
-                <div class="collapsible" onclick="toggleCollapsible(this)">Aditya College of Engineering and Technology (ACET)</div>
+                <div class="collapsible">Aditya College of Engineering and Technology (ACET)</div>
                 <div class="content">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Courses</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Courses</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What are the courses at Aditya College of Engineering and Technology?</li>
                         <li>What are the courses at ACET?</li>
                         <li>Which courses are offered by Aditya College of Engineering and Technology?</li>
@@ -383,8 +509,8 @@
                         <li>Which programs are offered by Aditya College of Engineering and Technology?</li>
                         <li>List the programs available at Aditya College of Engineering and Technology.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Convener Quota Fees</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Convener Quota Fees</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What is the convener quota fee at Aditya College of Engineering and Technology?</li>
                         <li>What is the convener quota fee at ACET?</li>
                         <li>How much is the annual fee for convener quota at Aditya College of Engineering and Technology?</li>
@@ -392,8 +518,8 @@
                         <li>Tell me the convener quota fees for Aditya College of Engineering and Technology.</li>
                         <li>Tell me the convener quota fees for ACET.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Management Quota Fees</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Management Quota Fees</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What is the management quota fee at Aditya College of Engineering and Technology?</li>
                         <li>What is the management quota fee at ACET?</li>
                         <li>How much is the management quota fee at Aditya College of Engineering and Technology?</li>
@@ -401,8 +527,8 @@
                         <li>Tell me the management quota fees for Aditya College of Engineering and Technology.</li>
                         <li>Tell me the management quota fees for ACET.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Placements</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Placements</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What is the placement percentage at Aditya College of Engineering and Technology?</li>
                         <li>What is the placement percentage at ACET?</li>
                         <li>How good are placements at Aditya College of Engineering and Technology?</li>
@@ -410,8 +536,8 @@
                         <li>Tell me about Aditya College of Engineering and Technology placements.</li>
                         <li>Tell me about ACET placements.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Contact Information</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Contact Information</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What is the contact number for Aditya College of Engineering and Technology?</li>
                         <li>What is the contact number for ACET?</li>
                         <li>How can I contact Aditya College of Engineering and Technology?</li>
@@ -419,8 +545,8 @@
                         <li>Give me the phone number of Aditya College of Engineering and Technology.</li>
                         <li>Give me the phone number of ACET.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">General Information</h3>
-                    <ul class="list-disc list-inside text-gray-600">
+                    <h3 class="text-xl font-semibold text-white mb-4">General Information</h3>
+                    <ul class="list-disc list-inside text-gray-300">
                         <li>Tell me about Aditya College of Engineering and Technology.</li>
                         <li>Tell me about ACET.</li>
                         <li>What are the details of Aditya College of Engineering and Technology?</li>
@@ -431,10 +557,10 @@
                 </div>
 
                 <!-- Yogananda Institute of Technology & Science -->
-                <div class="collapsible" onclick="toggleCollapsible(this)">Yogananda Institute of Technology & Science (YITS)</div>
+                <div class="collapsible">Yogananda Institute of Technology & Science (YITS)</div>
                 <div class="content">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Courses</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Courses</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What are the courses at Yogananda Institute of Technology & Science?</li>
                         <li>What are the courses at YITS?</li>
                         <li>Which courses are offered by Yogananda Institute of Technology & Science?</li>
@@ -445,8 +571,8 @@
                         <li>Which programs are offered by Yogananda Institute of Technology & Science?</li>
                         <li>List the programs available at Yogananda Institute of Technology & Science.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Convener Quota Fees</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Convener Quota Fees</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What is the convener quota fee at Yogananda Institute of Technology & Science?</li>
                         <li>What is the convener quota fee at YITS?</li>
                         <li>How much is the annual fee for convener quota at Yogananda Institute of Technology & Science?</li>
@@ -454,8 +580,8 @@
                         <li>Tell me the convener quota fees for Yogananda Institute of Technology & Science.</li>
                         <li>Tell me the convener quota fees for YITS.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Management Quota Fees</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Management Quota Fees</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What is the management quota fee at Yogananda Institute of Technology & Science?</li>
                         <li>What is the management quota fee at YITS?</li>
                         <li>How much is the management quota fee at Yogananda Institute of Technology & Science?</li>
@@ -463,8 +589,8 @@
                         <li>Tell me the management quota fees for Yogananda Institute of Technology & Science.</li>
                         <li>Tell me the management quota fees for YITS.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Placements</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Placements</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What is the placement percentage at Yogananda Institute of Technology & Science?</li>
                         <li>What is the placement percentage at YITS?</li>
                         <li>How good are placements at Yogananda Institute of Technology & Science?</li>
@@ -472,8 +598,8 @@
                         <li>Tell me about Yogananda Institute of Technology & Science placements.</li>
                         <li>Tell me about YITS placements.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Contact Information</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Contact Information</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What is the contact number for Yogananda Institute of Technology & Science?</li>
                         <li>What is the contact number for YITS?</li>
                         <li>How can I contact Yogananda Institute of Technology & Science?</li>
@@ -481,8 +607,8 @@
                         <li>Give me the phone number of Yogananda Institute of Technology & Science.</li>
                         <li>Give me the phone number of YITS.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">General Information</h3>
-                    <ul class="list-disc list-inside text-gray-600">
+                    <h3 class="text-xl font-semibold text-white mb-4">General Information</h3>
+                    <ul class="list-disc list-inside text-gray-300">
                         <li>Tell me about Yogananda Institute of Technology & Science.</li>
                         <li>Tell me about YITS.</li>
                         <li>What are the details of Yogananda Institute of Technology & Science?</li>
@@ -493,10 +619,10 @@
                 </div>
 
                 <!-- KL University (Koneru Lakshmaiah University) -->
-                <div class="collapsible" onclick="toggleCollapsible(this)">KL University (Koneru Lakshmaiah University) (KLEF)</div>
+                <div class="collapsible">KL University (Koneru Lakshmaiah University) (KLEF)</div>
                 <div class="content">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Courses</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Courses</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What are the courses at KL University (Koneru Lakshmaiah University)?</li>
                         <li>What are the courses at KLEF?</li>
                         <li>Which courses are offered by KL University (Koneru Lakshmaiah University)?</li>
@@ -507,8 +633,8 @@
                         <li>Which programs are offered by KL University (Koneru Lakshmaiah University)?</li>
                         <li>List the programs available at KL University (Koneru Lakshmaiah University).</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Convener Quota Fees</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Convener Quota Fees</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What is the convener quota fee at KL University (Koneru Lakshmaiah University)?</li>
                         <li>What is the convener quota fee at KLEF?</li>
                         <li>How much is the annual fee for convener quota at KL University (Koneru Lakshmaiah University)?</li>
@@ -516,8 +642,8 @@
                         <li>Tell me the convener quota fees for KL University (Koneru Lakshmaiah University).</li>
                         <li>Tell me the convener quota fees for KLEF.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Management Quota Fees</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Management Quota Fees</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What is the management quota fee at KL University (Koneru Lakshmaiah University)?</li>
                         <li>What is the management quota fee at KLEF?</li>
                         <li>How much is the management quota fee at KL University (Koneru Lakshmaiah University)?</li>
@@ -525,8 +651,8 @@
                         <li>Tell me the management quota fees for KL University (Koneru Lakshmaiah University).</li>
                         <li>Tell me the management quota fees for KLEF.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Placements</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Placements</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What is the placement percentage at KL University (Koneru Lakshmaiah University)?</li>
                         <li>What is the placement percentage at KLEF?</li>
                         <li>How good are placements at KL University (Koneru Lakshmaiah University)?</li>
@@ -534,17 +660,17 @@
                         <li>Tell me about KL University (Koneru Lakshmaiah University) placements.</li>
                         <li>Tell me about KLEF placements.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Contact Information</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Contact Information</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What is the contact number for KL University (Koneru Lakshmaiah University)?</li>
                         <li>What is the contact number for KLEF?</li>
-                        <li>How can I contact KL University of Technology?</li>
+                        <li>How can I contact KL University?</li>
                         <li>How can I contact KLEF?</li>
                         <li>Give me the phone number of KL University.</li>
                         <li>Give me the phone number of KLEF.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">General Information</h3>
-                    <ul class="list-disc list-inside text-gray-600">
+                    <h3 class="text-xl font-semibold text-white mb-4">General Information</h3>
+                    <ul class="list-disc list-inside text-gray-300">
                         <li>Tell me about KL University.</li>
                         <li>Tell me about KLEF.</li>
                         <li>What are the details of KL University?</li>
@@ -555,10 +681,10 @@
                 </div>
 
                 <!-- SRM University -->
-                <div class="collapsible" onclick="toggleCollapsible(this)">SRM University (SRMUPU)</div>
+                <div class="collapsible">SRM University (SRMUPU)</div>
                 <div class="content">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Courses</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Courses</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What are the courses at SRM University?</li>
                         <li>What are the courses at SRMUPU?</li>
                         <li>Which courses are offered by SRM University?</li>
@@ -569,8 +695,8 @@
                         <li>Which programs are offered by SRM University?</li>
                         <li>List all available courses at SRM?</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Convener Quota Fees</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Convener Quota Fees</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What is the convener quota fee at SRM University?</li>
                         <li>What is the convener quota fee at SRMUPU?</li>
                         <li>How much is the annual fee for convener quota at SRM University?</li>
@@ -578,8 +704,8 @@
                         <li>Tell me the convener quota fees for SRM University.</li>
                         <li>Tell me the convener quota fees for SRMUPU.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Management Quota Fees</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Management Quota Fees</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What is the management quota fee at SRM University?</li>
                         <li>What is the management quota fee at SRMUPU?</li>
                         <li>How much is the management quota fee at SRM University?</li>
@@ -587,8 +713,8 @@
                         <li>Tell me the management quota fees for SRM University.</li>
                         <li>Tell me the management quota fees for SRMUPU.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Placements</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Placements</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What is the placement percentage at SRM University?</li>
                         <li>What is the placement percentage at SRMUPU?</li>
                         <li>How good are placements at SRM University?</li>
@@ -596,8 +722,8 @@
                         <li>Tell me about SRM University placements.</li>
                         <li>Tell me about SRMUPU placements.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Contact Information</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Contact Information</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What is the contact number for SRM University?</li>
                         <li>What is the contact number for SRMUPU?</li>
                         <li>How can I contact SRM University?</li>
@@ -605,8 +731,8 @@
                         <li>Give me the phone number of SRM University.</li>
                         <li>Give me the phone number of SRMUPU.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">General Information</h3>
-                    <ul class="list-disc list-inside text-gray-600">
+                    <h3 class="text-xl font-semibold text-white mb-4">General Information</h3>
+                    <ul class="list-disc list-inside text-gray-300">
                         <li>Tell me about SRM University.</li>
                         <li>Tell me about SRMUPU.</li>
                         <li>What are the details of SRM University?</li>
@@ -617,10 +743,10 @@
                 </div>
 
                 <!-- VIT-AP University (Vellore Institute of Technology) -->
-                <div class="collapsible" onclick="toggleCollapsible(this)">VIT-AP University (Vellore Institute of Technology) (VIT)</div>
+                <div class="collapsible">VIT-AP University (Vellore Institute of Technology) (VIT)</div>
                 <div class="content">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Courses</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Courses</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What are the courses at VIT-AP University (Vellore Institute of Technology)?</li>
                         <li>What are the courses at VIT?</li>
                         <li>Which courses are offered by VIT-AP University (Vellore Institute of Technology)?</li>
@@ -631,8 +757,8 @@
                         <li>Which programs are offered by VIT-AP University (Vellore Institute of Technology)?</li>
                         <li>List the programs available at VIT-AP University (Vellore Institute of Technology).</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Convener Quota Fees</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Convener Quota Fees</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What is the convener quota fee at VIT-AP University (Vellore Institute of Technology)?</li>
                         <li>What is the convener quota fee at VIT?</li>
                         <li>How much is the annual fee for convener quota at VIT-AP University (Vellore Institute of Technology)?</li>
@@ -640,8 +766,8 @@
                         <li>Tell me the convener quota fees for VIT-AP University (Vellore Institute of Technology).</li>
                         <li>Tell me the convener quota fees for VIT.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Management Quota Fees</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Management Quota Fees</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What is the management quota fee at VIT-AP University (Vellore Institute of Technology)?</li>
                         <li>What is the management quota fee at VIT?</li>
                         <li>How much is the management quota fee at VIT-AP University (Vellore Institute of Technology)?</li>
@@ -649,8 +775,8 @@
                         <li>Tell me the management quota fees for VIT-AP University (Vellore Institute of Technology).</li>
                         <li>Tell me the management quota fees for VIT.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Placements</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Placements</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What is the placement percentage at VIT-AP University (Vellore Institute of Technology)?</li>
                         <li>What is the placement percentage at VIT?</li>
                         <li>How good are placements at VIT-AP University (Vellore Institute of Technology)?</li>
@@ -658,8 +784,8 @@
                         <li>Tell me about VIT-AP University (Vellore Institute of Technology) placements.</li>
                         <li>Tell me about VIT placements.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Contact Information</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-6">
+                    <h3 class="text-xl font-semibold text-white mb-4">Contact Information</h3>
+                    <ul class="list-disc list-inside text-gray-300 mb-6">
                         <li>What is the contact number for VIT-AP University (Vellore Institute of Technology)?</li>
                         <li>What is the contact number for VIT?</li>
                         <li>How can I contact VIT-AP University (Vellore Institute of Technology)?</li>
@@ -667,8 +793,8 @@
                         <li>Give me the phone number of VIT-AP University (Vellore Institute of Technology).</li>
                         <li>Give me the phone number of VIT.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">General Information</h3>
-                    <ul class="list-disc list-inside text-gray-600">
+                    <h3 class="text-xl font-semibold text-white mb-4">General Information</h3>
+                    <ul class="list-disc list-inside text-gray-300">
                         <li>Tell me about VIT-AP University (Vellore Institute of Technology).</li>
                         <li>Tell me about VIT.</li>
                         <li>What are the details of VIT-AP University (Vellore Institute of Technology)?</li>
@@ -681,20 +807,20 @@
         </section>
 
         <!-- About Section -->
-        <section id="about" class="py-12 bg-gray-100 rounded-lg">
-            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-8">About APaskVidya</h2>
-            <p class="text-lg text-gray-600 max-w-3xl mx-auto text-center">
-                APaskVidya is designed to help students, parents, and educators explore engineering colleges in Andhra Pradesh. Our chatbot provides instant answers on courses, fees, placements, and more, making college research effortless.
+        <section id="about" class="py-16 bg-gray-900 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">About APaskVidya</h2>
+            <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                APaskVidya is your premium guide to exploring engineering colleges in Andhra Pradesh. Our intelligent chatbot delivers instant, accurate answers on courses, fees, placements, and more, simplifying your college research journey.
             </p>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer id="contact" class="gradient-bg text-white py-8">
+    <footer id="contact" class="text-white py-10">
         <div class="container mx-auto px-4 text-center">
-            <h3 class="text-xl font-semibold mb-4">Contact Us</h3>
-            <p class="text-gray-200">Have questions? Reach out at <a href="mailto:support@apaskvidya.com" class="underline hover:text-yellow-300">support@apaskvidya.com</a></p>
-            <p class="mt-4 text-gray-300">© 2025 APaskVidya. All rights reserved.</p>
+            <h3 class="text-2xl font-semibold mb-4">Contact Us</h3>
+            <p class="text-gray-300">Have questions? Reach out at <a href="mailto:support@apaskvidya.com" class="underline hover:text-yellow-400 transition">support@apaskvidya.com</a></p>
+            <p class="mt-4 text-gray-400">© 2025 APaskVidya. All rights reserved.</p>
         </div>
     </footer>
 
@@ -705,6 +831,22 @@
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
         }
+
+        function toggleCollapsible(element) {
+            const content = element.nextElementSibling;
+            content.style.display = content.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Fade out welcome message after 3 seconds
+        window.addEventListener('load', function() {
+            const welcomeMessage = document.getElementById('welcome-message');
+            setTimeout(() => {
+                welcomeMessage.classList.add('fade-out');
+                setTimeout(() => {
+                    welcomeMessage.style.display = 'none';
+                }, 1000); // Match transition duration
+            }, 3000);
+        });
     </script>
 </body>
 </html>
